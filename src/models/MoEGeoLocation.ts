@@ -1,6 +1,6 @@
 export default class MoEGeoLocation {
-  latitude: Number;
-  longitude: Number;
+  latitude!: Number;
+  longitude!: Number;
 
   constructor(latitude: Number, longitude: Number) {
     if (typeof latitude == "number" && typeof longitude == "number") {

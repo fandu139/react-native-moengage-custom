@@ -56,6 +56,8 @@ const _eventNames = [
 ];
 
 var _eventTypeHandler = new Map();
+{/* Ignore TS Ignore
+// @ts-ignore */}
 var MoeEventEmitter;
 
 if (MoEReactBridge) {
@@ -65,8 +67,10 @@ if (MoEReactBridge) {
   }
 }
 
-function handleEventBroadcast(type, broadcast) {
-  MoeEventEmitter.addListener(broadcast, (notification) => {
+function handleEventBroadcast(type: String, broadcast: String) {
+  {/* Ignore TS Ignore
+  // @ts-ignore */}
+  MoeEventEmitter.addListener(broadcast, (notification: { payload: any }) => {
     executeHandler(_eventTypeHandler.get(type), notification, type);
   });
 }
@@ -84,12 +88,12 @@ function showError(message: String) {
 }
 
 var ReactMoE = {
-  setEventListener: function (type, handler) {
+  setEventListener: function (type: any, handler: any) {
     if (!MoEReactBridge) return;
     _eventTypeHandler.set(type, handler);
   },
 
-  removeEventListener: function (type) {
+  removeEventListener: function (type: any) {
     if (!MoEReactBridge) return;
     _eventTypeHandler.delete(type);
   },
@@ -301,7 +305,7 @@ var ReactMoE = {
    * Sets the gender of the user.
    * @param gender gender to be set
    */
-  setUserGender: function (gender) {
+  setUserGender: function (gender: Object) {
     commonValidationCheck();
     console.log("Will set gender: " + gender);
     const payload = MoEHelper.createUserAttributeParam(
@@ -343,7 +347,7 @@ var ReactMoE = {
    * @param userAttributeName attribute name
    * @param userAttributeValue attribute value
    */
-  setUserAttribute: function (userAttributeName: string, userAttributeValue) {
+  setUserAttribute: function (userAttributeName: String, userAttributeValue: Object) {
     commonValidationCheck();
     console.log(
       "Will track user attribute [attributeName]: " +
@@ -465,8 +469,12 @@ var ReactMoE = {
     }
     let campaignJson = inAppCampaign.toJSON();
     if (Platform.OS == PLATFORM_ANDROID) {
+      {/* Ignore TS Ignore
+      // @ts-ignore */}
       MoERNAndroid.selfHandledShown(campaignJson);
     } else if (Platform.OS == PLATFORM_IOS) {
+      {/* Ignore TS Ignore
+      // @ts-ignore */}
       MoERNiOS.selfHandledShown(campaignJson);
     }
   },
@@ -485,8 +493,12 @@ var ReactMoE = {
     }
     let campaignJson = inAppCampaign.toJSON();
     if (Platform.OS == PLATFORM_ANDROID) {
+      {/* Ignore TS Ignore
+      // @ts-ignore */}
       MoERNAndroid.selfHandledPrimaryClicked(campaignJson);
     } else if (Platform.OS == PLATFORM_IOS) {
+      {/* Ignore TS Ignore
+      // @ts-ignore */}
       MoERNiOS.selfHandledPrimaryClicked(campaignJson);
     }
   },
@@ -505,8 +517,12 @@ var ReactMoE = {
     }
     let campaignJson = inAppCampaign.toJSON();
     if (Platform.OS == PLATFORM_ANDROID) {
+      {/* Ignore TS Ignore
+      // @ts-ignore */}
       MoERNAndroid.selfHandledClicked(campaignJson);
     } else if (Platform.OS == PLATFORM_IOS) {
+      {/* Ignore TS Ignore
+      // @ts-ignore */}
       MoERNiOS.selfHandledClicked(campaignJson);
     }
   },
@@ -525,8 +541,12 @@ var ReactMoE = {
     }
     let campaignJson = inAppCampaign.toJSON();
     if (Platform.OS == PLATFORM_ANDROID) {
+      {/* Ignore TS Ignore
+      // @ts-ignore */}
       MoERNAndroid.selfHandledDismissed(campaignJson);
     } else if (Platform.OS == PLATFORM_IOS) {
+      {/* Ignore TS Ignore
+      // @ts-ignore */}
       MoERNiOS.selfHandledDismissed(campaignJson);
     }
   },

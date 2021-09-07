@@ -1,11 +1,18 @@
 import { isValidObject, isValidString } from "../utils/MoEHelper";
 
-export default class MoEInAppNavigation {
-  navigationType: String;
-  url: String;
-  keyValuePair: Map<String, Object>;
+type PropPayload = {
+  navigationType: String,
+  value: String,
+  url: String,
+  kvPair: Map<String, Object>,
+}
 
-  constructor(navigation: Object) {
+export default class MoEInAppNavigation {
+  navigationType!: String;
+  url!: String;
+  keyValuePair!: Map<String, Object>;
+
+  constructor(navigation: PropPayload) {
     if (isValidObject(navigation)) {
       if (isValidString(navigation["navigationType"])) {
         this.navigationType = navigation["navigationType"];

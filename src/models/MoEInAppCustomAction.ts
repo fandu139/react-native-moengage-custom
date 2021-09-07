@@ -1,9 +1,13 @@
 import { isValidObject } from "../utils/MoEHelper";
 
-export default class MoEInAppCustomAction {
-  keyValuePair: Map<String, Object>;
+type PropPayload = {
+  kvPair: Map<String, Object>,
+}
 
-  constructor(customAction: Object) {
+export default class MoEInAppCustomAction {
+  keyValuePair!: Map<String, Object>;
+
+  constructor(customAction: PropPayload) {
     if (isValidObject(customAction)) {
       if (isValidObject(customAction["kvPair"])) {
         this.keyValuePair = customAction["kvPair"];
