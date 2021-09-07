@@ -1,12 +1,18 @@
 import { isValidObject, isValidString } from "../utils/MoEHelper";
 import { MoEPushService } from "./MoEPushService";
 
-export default class MoEPushToken {
-  platform: String;
-  pushService: MoEPushService;
-  token: String;
+type PropPayload = {
+  platform: String,
+  token: String,
+  pushService: MoEPushService,
+}
 
-  constructor(tokenPayload: Object) {
+export default class MoEPushToken {
+  platform!: String;
+  pushService!: MoEPushService;
+  token!: String;
+
+  constructor(tokenPayload: PropPayload) {
     if (isValidObject(tokenPayload)) {
       if (isValidString(tokenPayload["platform"])) {
         this.platform = tokenPayload["platform"];

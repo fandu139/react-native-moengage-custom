@@ -1,12 +1,20 @@
 import { isValidObject, isValidString } from "../utils/MoEHelper";
 
-export default class MoEPushCampaign {
-  platform: String;
-  payload: Map<String, Object>;
-  isDefaultAction: Boolean
-  clickAction: Map<String, Object>
+type PropPayload = {
+  platform: String,
+  token: string,
+  payload: Map<String, Object>,
+  isDefaultAction: Boolean,
+  clickedAction: Map<String, Object>,
+}
 
-  constructor(pushPayload: Object) {
+export default class MoEPushCampaign {
+  platform!: String;
+  payload!: Map<String, Object>;
+  isDefaultAction!: Boolean
+  clickAction!: Map<String, Object>
+
+  constructor(pushPayload: PropPayload) {
     if (isValidObject(pushPayload)) {
       if (isValidString(pushPayload["platform"])) {
         this.platform = pushPayload["platform"];

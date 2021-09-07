@@ -1,5 +1,9 @@
 const MoEReactBridge = require("react-native").NativeModules.MoEReactBridge;
 
+type PropPayload = {
+  type: String,
+}
+
 export class MoERNAndroid {
   static initialize() {
     MoEReactBridge.initialize();
@@ -33,22 +37,22 @@ export class MoERNAndroid {
     MoEReactBridge.getSelfHandledInApp();
   }
 
-  static selfHandledShown(payload: object) {
+  static selfHandledShown(payload: PropPayload) {
     payload["type"] = "impression";
     MoERNAndroid.selfHandledCallback(payload);
   }
 
-  static selfHandledClicked(payload: object) {
+  static selfHandledClicked(payload: PropPayload) {
     payload["type"] = "click";
     MoERNAndroid.selfHandledCallback(payload);
   }
 
-  static selfHandledDismissed(payload: object) {
+  static selfHandledDismissed(payload: PropPayload) {
     payload["type"] = "dismissed";
     MoERNAndroid.selfHandledCallback(payload);
   }
 
-  static selfHandledPrimaryClicked(payload: object){
+  static selfHandledPrimaryClicked(payload: PropPayload){
     payload["type"] = "primary_clicked";
     MoERNAndroid.selfHandledCallback(payload);
   }

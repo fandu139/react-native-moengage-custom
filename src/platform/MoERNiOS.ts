@@ -1,5 +1,9 @@
 const MoEReactBridge = require("react-native").NativeModules.MoEReactBridge;
 
+type PropPayload = {
+  type: String,
+}
+
 export class MoERNiOS {
   static initialize() {
     MoEReactBridge.initialize();
@@ -33,22 +37,22 @@ export class MoERNiOS {
     MoEReactBridge.getSelfHandledInApp();
   }
 
-  static selfHandledShown(payload: Object) {
+  static selfHandledShown(payload: PropPayload) {
     payload["type"] = "impression";
     MoEReactBridge.updateSelfHandledInAppStatusWithPayload(payload);
   }
 
-  static selfHandledPrimaryClicked(payload: Object) {
+  static selfHandledPrimaryClicked(payload: PropPayload) {
     payload["type"] = "primary_clicked";
     MoEReactBridge.updateSelfHandledInAppStatusWithPayload(payload);
   }
 
-  static selfHandledClicked(payload: Object) {
+  static selfHandledClicked(payload: PropPayload) {
     payload["type"] = "click";
     MoEReactBridge.updateSelfHandledInAppStatusWithPayload(payload);
   }
 
-  static selfHandledDismissed(payload: Object) {
+  static selfHandledDismissed(payload: PropPayload) {
     payload["type"] = "dismissed";
     MoEReactBridge.updateSelfHandledInAppStatusWithPayload(payload);
   }

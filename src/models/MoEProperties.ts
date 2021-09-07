@@ -42,6 +42,8 @@ export default class MoEProperties {
       return
     }
     
+    {/* Ignore TS Ignore on Text
+    // @ts-ignore */}
     this.generalAttributes[key.toString()] = value;
   }
 
@@ -59,6 +61,9 @@ export default class MoEProperties {
       console.warn("MoEProperties->addDateAttribute:  invalid date attribute");
       return
     }
+
+    {/* Ignore TS Ignore on Text
+    // @ts-ignore */}
     this.dateTimeAttributes[key.toString()] = date;
   }
 
@@ -75,6 +80,8 @@ export default class MoEProperties {
       return;
     }
     if (this.validateLatLong(location)) {
+      {/* Ignore TS Ignore on Text
+      // @ts-ignore */}
       this.locationAttributes[key.toString()] = location.toJSON();
     } else {
       console.warn("MoEGeoLocation->addLocationAttribute: invalid coordinates");

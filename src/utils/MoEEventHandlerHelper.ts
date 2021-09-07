@@ -13,7 +13,9 @@ const inAppEventNames: Array<String> = [
 
 export function executeHandler(
   handler: Function,
-  notification: Object,
+  notification: {
+    payload: any,
+  },
   type: String
 ) {
   if (handler && isValidObject(notification) && type) {

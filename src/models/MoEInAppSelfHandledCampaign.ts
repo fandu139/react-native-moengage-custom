@@ -5,12 +5,18 @@ import {
   isValidBoolean,
 } from "../utils/MoEHelper";
 
-export default class MoEInAppSelfHandledCampaign {
-  campaignContent: String;
-  dismissInterval: Number;
-  cancellable: Boolean;
+type PropPayload = {
+  payload: String,
+  dismissInterval: Number,
+  isCancellable: Boolean,
+}
 
-  constructor(campaign: Object) {
+export default class MoEInAppSelfHandledCampaign {
+  campaignContent!: String;
+  dismissInterval!: Number;
+  cancellable!: Boolean;
+
+  constructor(campaign: PropPayload) {
     if (isValidObject(campaign)) {
       if (isValidString(campaign["payload"])) {
         this.campaignContent = campaign["payload"];
