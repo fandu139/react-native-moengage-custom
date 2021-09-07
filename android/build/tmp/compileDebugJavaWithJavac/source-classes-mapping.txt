@@ -1,0 +1,2 @@
+com/moengage/react/BuildConfig.java
+ com.moengage.react.BuildConfig

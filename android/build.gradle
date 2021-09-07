@@ -1,0 +1,80 @@
+buildscript {
+  ext.kotlinVersion = '1.4.20'
+  repositories {
+    google()
+    mavenCentral()
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:4.1.2'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+  }
+}
+
+rootProject.allprojects {
+  repositories {
+    google()
+    mavenCentral()
+    jcenter()
+  }
+}
+
+ext {
+  //dependency version
+  moengageVersion = "11.2.00"
+  basePluginVersion = "2.1.00"
+  //build versions
+  minimumVersion = 16
+  targetVersion = 29
+  compileVersion = 29
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+  compileSdkVersion compileVersion
+
+  defaultConfig {
+    minSdkVersion minimumVersion
+    targetSdkVersion targetVersion
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+}
+
+dependencies {
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+  implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+
+  compileOnly ("com.moengage:moe-android-sdk:$moengageVersion")
+  api("com.moengage:plugin-base:$basePluginVersion")
+
+  compileOnly 'com.facebook.react:react-native:+'
+
+}
+
+apply from: file("./user-agent.gradle")
+
+repositories {
+  mavenCentral()
+}
